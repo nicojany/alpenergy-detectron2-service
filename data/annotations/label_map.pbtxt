@@ -1,0 +1,24 @@
+item {
+  id: 1
+  name: 'flat roof'
+}
+
+item {
+  id: 2
+  name: 'gabled roof'
+}
+
+item {
+  id: 3
+  name: 'hipped roof'
+}
+
+item {
+  id: 4
+  name: 'obstacles'
+}
+
+item {
+  id: 5
+  name: 'hip'
+}

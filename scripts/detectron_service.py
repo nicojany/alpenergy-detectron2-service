@@ -13,7 +13,7 @@ app = Flask(__name__)
 cfg = get_cfg()
 cfg.MODEL.DEVICE = "cpu"
 cfg.merge_from_file(model_zoo.get_config_file("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml"))
-cfg.MODEL.WEIGHTS = "./models/model_final.pth"
+cfg.MODEL.WEIGHTS = "../models/model_final2.pth" 
 cfg.MODEL.ROI_HEADS.NUM_CLASSES = 2
 predictor = DefaultPredictor(cfg)
 
