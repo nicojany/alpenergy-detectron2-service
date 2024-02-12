@@ -13,7 +13,7 @@ app = Flask(__name__)
 cfg = get_cfg()
 cfg.MODEL.DEVICE = "cpu"
 cfg.merge_from_file(model_zoo.get_config_file("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml"))
-cfg.MODEL.WEIGHTS = "../models/model_final2.pth" 
+cfg.MODEL.WEIGHTS = "../models/model_final.pth" 
 cfg.MODEL.ROI_HEADS.NUM_CLASSES = 2
 predictor = DefaultPredictor(cfg)
 
@@ -75,9 +75,13 @@ def process_image(image_data):
         predictions = predictor(image)
         marker_centroid = find_marker_centroid(image)
         
-        # Filter predictions and find polygons
+        # Filter predictions by confidence and category
+        roof_category_id = 1
         confidence_threshold = 0.80
-        filtered_masks = predictions["instances"].pred_masks[predictions["instances"].scores > confidence_threshold]
+        roof_predictions = predictions["instances"].pred_classes == roof_category_id
+        high_confidence = predictions["instances"].scores > confidence_threshold
+        filtered_masks = predictions["instances"].pred_masks[roof_predictions & high_confidence]
+        
         polygons = masks_to_polygons(filtered_masks)
         
         # Find the closest polygon to the marker
