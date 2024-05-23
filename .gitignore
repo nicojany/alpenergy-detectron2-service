@@ -1,3 +1,4 @@
 # Ignore model files
 models/
 *.pth
+.DS_Store
