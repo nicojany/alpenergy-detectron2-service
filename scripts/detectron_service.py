@@ -17,25 +17,13 @@ cfg.MODEL.WEIGHTS = "../models/model_final.pth"
 cfg.MODEL.ROI_HEADS.NUM_CLASSES = 2
 predictor = DefaultPredictor(cfg)
 
-def find_marker_centroid(image):
-    # Convert image to HSV for better color segmentation
-    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-    
-    # Define range for red color
-    lower_red = np.array([0,50,50])
-    upper_red = np.array([10,255,255])
-    
-    # Threshold the image to get only red color
-    mask = cv2.inRange(hsv, lower_red, upper_red)
-    
-    # Find the centroid of the largest detected red area (assumed to be the marker)
-    M = cv2.moments(mask)
-    if M["m00"] == 0: return None
-    cx = int(M["m10"] / M["m00"])
-    cy = int(M["m01"] / M["m00"])
-    
-    return (cx, cy)
-
+def find_image_center(image):
+    # Get the dimensions of the image
+    height, width, _ = image.shape
+    # Calculate the center of the image
+    center_x = width // 2
+    center_y = height // 2
+    return (center_x, center_y)
 
 def masks_to_polygons(masks):
     polygons = []
@@ -48,11 +36,10 @@ def masks_to_polygons(masks):
             # Convert the contour points to a list of [x, y] pairs
             polygon = approx.reshape(-1, 2).tolist()
             polygons.append(polygon)
-            print(f"Contour points: {contour.ravel().tolist()}")  # Log the raw contour points
 
     return polygons
 
-def find_closest_polygon(polygons, marker_centroid):
+def find_closest_polygon(polygons, center):
     min_distance = float('inf')
     closest_polygon = None
     for polygon in polygons:
@@ -61,11 +48,36 @@ def find_closest_polygon(polygons, marker_centroid):
         if M["m00"] != 0:
             cx = int(M["m10"] / M["m00"])
             cy = int(M["m01"] / M["m00"])
-            distance = np.sqrt((cx - marker_centroid[0]) ** 2 + (cy - marker_centroid[1]) ** 2)
+            distance = np.sqrt((cx - center[0]) ** 2 + (cy - center[1]) ** 2)
             if distance < min_distance:
                 min_distance = distance
                 closest_polygon = polygon
     return closest_polygon
+
+def is_polygon_inside_polygon(inner_polygon, outer_polygon):
+    for point in inner_polygon:
+        if not is_point_inside_polygon(point, outer_polygon):
+            return False
+    return True
+
+def is_point_inside_polygon(point, polygon):
+    x, y = point
+    n = len(polygon)
+    inside = False
+
+    p1x, p1y = polygon[0]
+    for i in range(n + 1):
+        p2x, p2y = polygon[i % n]
+        if y > min(p1y, p2y):
+            if y <= max(p1y, p2y):
+                if x <= max(p1x, p2x):
+                    if p1y != p2y:
+                        xinters = (y - p1y) * (p2x - p1x) / (p2y - p1y) + p1x
+                    if p1x == p2x or x <= xinters:
+                        inside = not inside
+        p1x, p1y = p2x, p2y
+
+    return inside
 
 def process_image(image_data):
     try:
@@ -73,24 +85,36 @@ def process_image(image_data):
         nparr = np.frombuffer(image_data, np.uint8)
         image = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
         predictions = predictor(image)
-        marker_centroid = find_marker_centroid(image)
+        image_center = find_image_center(image)
         
         # Filter predictions by confidence and category
-        roof_category_id = 1
-        confidence_threshold = 0.80
+        obstacle_category_id = 0
+        roof_category_id = 1  
+        confidence_threshold = 0.90
+
         roof_predictions = predictions["instances"].pred_classes == roof_category_id
+        obstacle_predictions = predictions["instances"].pred_classes == obstacle_category_id
         high_confidence = predictions["instances"].scores > confidence_threshold
-        filtered_masks = predictions["instances"].pred_masks[roof_predictions & high_confidence]
+
+        filtered_roof_masks = predictions["instances"].pred_masks[roof_predictions & high_confidence]
+        filtered_obstacle_masks = predictions["instances"].pred_masks[obstacle_predictions & high_confidence]
+
+        roof_polygons = masks_to_polygons(filtered_roof_masks)
+        obstacle_polygons = masks_to_polygons(filtered_obstacle_masks)
+
+        closest_roof_polygon = find_closest_polygon(roof_polygons, image_center)
+        roof_polygons = [closest_roof_polygon] if closest_roof_polygon else []
+
+        obstacles_on_roof = []
+        if closest_roof_polygon:
+            for obstacle in obstacle_polygons:
+                if is_polygon_inside_polygon(obstacle, closest_roof_polygon):  
+                    obstacles_on_roof.append(obstacle)
         
-        polygons = masks_to_polygons(filtered_masks)
-        
-        # Find the closest polygon to the marker
-        if marker_centroid:
-            closest_polygon = find_closest_polygon(polygons, marker_centroid)
-            polygons = [closest_polygon] if closest_polygon else []
-        
-        # Serialize polygon data to JSON and return
-        return jsonify({"polygons": polygons})
+        print(f"Polygon: {closest_roof_polygon}")  
+        print(f"Obstacles: {obstacles_on_roof}")  
+
+        return jsonify({"polygons": closest_roof_polygon, "obstacles": obstacles_on_roof})
 
     except Exception as e:
         print(f"Error processing image: {e}")
