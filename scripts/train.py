@@ -29,8 +29,8 @@ def setup_cfg():
     # Set the model weights
     cfg.MODEL.WEIGHTS = model_zoo.get_checkpoint_url("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml")
 
-    # Set the number of classes (2 for roof and obstacles)
-    cfg.MODEL.ROI_HEADS.NUM_CLASSES = 2  
+    # Set the number of classes (6 for hip, obstacle, roof, dormer, ridge, valley)
+    cfg.MODEL.ROI_HEADS.NUM_CLASSES = 7  
     cfg.SOLVER.IMS_PER_BATCH = 2
     cfg.SOLVER.BASE_LR = 0.001
     cfg.SOLVER.MAX_ITER = 500
@@ -38,14 +38,14 @@ def setup_cfg():
     cfg.MODEL.DEVICE = "cpu"
 
     # Set the output directory
-    cfg.OUTPUT_DIR = "/Users/njany/Documents/instasun-project/detectron2-service/models"
+    cfg.OUTPUT_DIR = "/Users/njany/Documents/instasun-project/detectron2-service/models/new"
 
     return cfg
 
 def main():
     # Register the datasets
-    register_coco_instances("roof_train", {}, "/Users/njany/Documents/instasun-project/detectron2-service/data/annotations/instances_train.json", "/Users/njany/Documents/instasun-project/detectron2-service/data/train")
-    register_coco_instances("roof_val", {}, "/Users/njany/Documents/instasun-project/detectron2-service/data/annotations/instances_val.json", "/Users/njany/Documents/instasun-project/detectron2-service/data/val")
+    register_coco_instances("roof_train", {}, "/Users/njany/Documents/instasun-project/detectron2-service/data_new/data/coco_train.json", "/Users/njany/Documents/instasun-project/detectron2-service/data_new/train")
+    register_coco_instances("roof_val", {}, "/Users/njany/Documents/instasun-project/detectron2-service/data_new/data/coco_val.json", "/Users/njany/Documents/instasun-project/detectron2-service/data_new/val")
 
     cfg = setup_cfg()
 

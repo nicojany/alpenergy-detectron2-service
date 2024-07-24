@@ -1,0 +1,77 @@
+{
+    "classes": [
+        {
+            "title": "panels",
+            "description": "",
+            "shape": "polygon",
+            "color": "#0F8A63",
+            "geometry_config": {},
+            "id": 13213694,
+            "hotkey": ""
+        },
+        {
+            "title": "obstacles",
+            "description": "",
+            "shape": "polygon",
+            "color": "#0F528A",
+            "geometry_config": {},
+            "id": 13213695,
+            "hotkey": ""
+        },
+        {
+            "title": "roof",
+            "description": "",
+            "shape": "polygon",
+            "color": "#8A440F",
+            "geometry_config": {},
+            "id": 13213696,
+            "hotkey": ""
+        },
+        {
+            "title": "hip",
+            "description": "",
+            "shape": "polygon",
+            "color": "#8A0F39",
+            "geometry_config": {},
+            "id": 13213697,
+            "hotkey": ""
+        },
+        {
+            "title": "dormer",
+            "description": "",
+            "shape": "polygon",
+            "color": "#738A0F",
+            "geometry_config": {},
+            "id": 13213698,
+            "hotkey": ""
+        },
+        {
+            "title": "ridge",
+            "description": "",
+            "shape": "line",
+            "color": "#F1DD04",
+            "geometry_config": {},
+            "id": 13213699,
+            "hotkey": ""
+        },
+        {
+            "title": "valley",
+            "description": "",
+            "shape": "line",
+            "color": "#CE7392",
+            "geometry_config": {},
+            "id": 13213700,
+            "hotkey": ""
+        }
+    ],
+    "tags": [],
+    "projectType": "images",
+    "projectSettings": {
+        "multiView": {
+            "enabled": false,
+            "tagName": null,
+            "tagId": null,
+            "isSynced": false
+        }
+    }
+}

@@ -1,0 +1,344 @@
+{
+    "description": "",
+    "tags": [],
+    "size": {
+        "height": 640,
+        "width": 640
+    },
+    "objects": [
+        {
+            "id": 1574135736,
+            "classId": 13211099,
+            "objectId": null,
+            "description": "",
+            "geometryType": "polygon",
+            "labelerLogin": "nicojany",
+            "createdAt": "2024-07-02T06:14:21.778Z",
+            "updatedAt": "2024-07-02T06:14:21.778Z",
+            "tags": [],
+            "classTitle": "obstacle",
+            "points": {
+                "exterior": [
+                    [
+                        418,
+                        302
+                    ],
+                    [
+                        420,
+                        310
+                    ],
+                    [
+                        434,
+                        305
+                    ],
+                    [
+                        430,
+                        298
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 1574135737,
+            "classId": 13211099,
+            "objectId": null,
+            "description": "",
+            "geometryType": "polygon",
+            "labelerLogin": "nicojany",
+            "createdAt": "2024-07-02T06:14:21.778Z",
+            "updatedAt": "2024-07-02T06:14:21.778Z",
+            "tags": [],
+            "classTitle": "obstacle",
+            "points": {
+                "exterior": [
+                    [
+                        372,
+                        34
+                    ],
+                    [
+                        372,
+                        45
+                    ],
+                    [
+                        382,
+                        45
+                    ],
+                    [
+                        381,
+                        35
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 1574135738,
+            "classId": 13211099,
+            "objectId": null,
+            "description": "",
+            "geometryType": "polygon",
+            "labelerLogin": "nicojany",
+            "createdAt": "2024-07-02T06:14:21.778Z",
+            "updatedAt": "2024-07-02T06:14:21.778Z",
+            "tags": [],
+            "classTitle": "obstacle",
+            "points": {
+                "exterior": [
+                    [
+                        411,
+                        120
+                    ],
+                    [
+                        411,
+                        130
+                    ],
+                    [
+                        417,
+                        130
+                    ],
+                    [
+                        416,
+                        119
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 1574135739,
+            "classId": 13211099,
+            "objectId": null,
+            "description": "",
+            "geometryType": "polygon",
+            "labelerLogin": "nicojany",
+            "createdAt": "2024-07-02T06:14:21.779Z",
+            "updatedAt": "2024-07-02T06:14:21.779Z",
+            "tags": [],
+            "classTitle": "obstacle",
+            "points": {
+                "exterior": [
+                    [
+                        480,
+                        166
+                    ],
+                    [
+                        485,
+                        175
+                    ],
+                    [
+                        508,
+                        174
+                    ],
+                    [
+                        502,
+                        166
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 1574135740,
+            "classId": 13211099,
+            "objectId": null,
+            "description": "",
+            "geometryType": "polygon",
+            "labelerLogin": "nicojany",
+            "createdAt": "2024-07-02T06:14:21.780Z",
+            "updatedAt": "2024-07-02T06:14:21.780Z",
+            "tags": [],
+            "classTitle": "obstacle",
+            "points": {
+                "exterior": [
+                    [
+                        462,
+                        165
+                    ],
+                    [
+                        463,
+                        173
+                    ],
+                    [
+                        476,
+                        172
+                    ],
+                    [
+                        473,
+                        166
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 1574135741,
+            "classId": 13211099,
+            "objectId": null,
+            "description": "",
+            "geometryType": "polygon",
+            "labelerLogin": "nicojany",
+            "createdAt": "2024-07-02T06:14:21.780Z",
+            "updatedAt": "2024-07-02T06:14:21.780Z",
+            "tags": [],
+            "classTitle": "obstacle",
+            "points": {
+                "exterior": [
+                    [
+                        478,
+                        228
+                    ],
+                    [
+                        487,
+                        228
+                    ],
+                    [
+                        485,
+                        214
+                    ],
+                    [
+                        476,
+                        216
+                    ],
+                    [
+                        475,
+                        228
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 1574135742,
+            "classId": 13211099,
+            "objectId": null,
+            "description": "",
+            "geometryType": "polygon",
+            "labelerLogin": "nicojany",
+            "createdAt": "2024-07-02T06:14:21.780Z",
+            "updatedAt": "2024-07-02T06:14:21.780Z",
+            "tags": [],
+            "classTitle": "obstacle",
+            "points": {
+                "exterior": [
+                    [
+                        476,
+                        203
+                    ],
+                    [
+                        476,
+                        213
+                    ],
+                    [
+                        487,
+                        212
+                    ],
+                    [
+                        486,
+                        201
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 1574135744,
+            "classId": 13211100,
+            "objectId": null,
+            "description": "",
+            "geometryType": "polygon",
+            "labelerLogin": "nicojany",
+            "createdAt": "2024-07-02T06:14:21.780Z",
+            "updatedAt": "2024-07-02T06:14:21.780Z",
+            "tags": [],
+            "classTitle": "roof",
+            "points": {
+                "exterior": [
+                    [
+                        595,
+                        22
+                    ],
+                    [
+                        586,
+                        278
+                    ],
+                    [
+                        477,
+                        271
+                    ],
+                    [
+                        476,
+                        316
+                    ],
+                    [
+                        354,
+                        309
+                    ],
+                    [
+                        370,
+                        12
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 1574135745,
+            "classId": 13211100,
+            "objectId": null,
+            "description": "",
+            "geometryType": "polygon",
+            "labelerLogin": "nicojany",
+            "createdAt": "2024-07-02T06:14:21.781Z",
+            "updatedAt": "2024-07-02T06:14:21.781Z",
+            "tags": [],
+            "classTitle": "roof",
+            "points": {
+                "exterior": [
+                    [
+                        122,
+                        0
+                    ],
+                    [
+                        103,
+                        335
+                    ],
+                    [
+                        222,
+                        338
+                    ],
+                    [
+                        239,
+                        0
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 1574370109,
+            "classId": 13211932,
+            "objectId": null,
+            "description": "",
+            "geometryType": "line",
+            "labelerLogin": "nicojany",
+            "createdAt": "2024-07-02T17:34:27.332Z",
+            "updatedAt": "2024-07-02T17:34:27.332Z",
+            "tags": [],
+            "classTitle": "ridge",
+            "points": {
+                "exterior": [
+                    [
+                        159,
+                        334
+                    ],
+                    [
+                        179,
+                        0
+                    ]
+                ],
+                "interior": []
+            }
+        }
+    ]
+}

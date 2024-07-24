@@ -1,0 +1,84 @@
+{
+    "description": "",
+    "tags": [],
+    "size": {
+        "height": 640,
+        "width": 640
+    },
+    "objects": [
+        {
+            "id": 1574896749,
+            "classId": 13213696,
+            "objectId": null,
+            "description": "",
+            "geometryType": "polygon",
+            "labelerLogin": "nicojany",
+            "createdAt": "2024-07-02T06:14:21.785Z",
+            "updatedAt": "2024-07-02T06:14:21.785Z",
+            "tags": [],
+            "classTitle": "roof",
+            "points": {
+                "exterior": [
+                    [
+                        328,
+                        310
+                    ],
+                    [
+                        455,
+                        437
+                    ],
+                    [
+                        548,
+                        339
+                    ],
+                    [
+                        573,
+                        367
+                    ],
+                    [
+                        614,
+                        324
+                    ],
+                    [
+                        589,
+                        296
+                    ],
+                    [
+                        593,
+                        291
+                    ],
+                    [
+                        465,
+                        157
+                    ]
+                ],
+                "interior": []
+            }
+        },
+        {
+            "id": 1574896750,
+            "classId": 13213699,
+            "objectId": null,
+            "description": "",
+            "geometryType": "line",
+            "labelerLogin": "nicojany",
+            "createdAt": "2024-07-02T14:48:18.236Z",
+            "updatedAt": "2024-07-02T14:48:18.236Z",
+            "tags": [],
+            "classTitle": "ridge",
+            "points": {
+                "exterior": [
+                    [
+                        542,
+                        236
+                    ],
+                    [
+                        398,
+                        383
+                    ]
+                ],
+                "interior": []
+            }
+        }
+    ]
+}

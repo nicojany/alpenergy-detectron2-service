@@ -39,6 +39,19 @@ def masks_to_polygons(masks):
 
     return polygons
 
+def masks_to_rectangles(masks):
+    rectangles = []
+    for mask in masks:
+        mask_np = mask.cpu().numpy().astype(np.uint8) * 255
+        contours, _ = cv2.findContours(mask_np, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        for contour in contours:
+            x, y, w, h = cv2.boundingRect(contour)
+            # Define rectangle as a list of four points [top-left, top-right, bottom-right, bottom-left]
+            rectangle = [[x, y], [x + w, y], [x + w, y + h], [x, y + h]]
+            rectangles.append(rectangle)
+
+    return rectangles
+
 def find_closest_polygon(polygons, center):
     min_distance = float('inf')
     closest_polygon = None
@@ -100,14 +113,14 @@ def process_image(image_data):
         filtered_obstacle_masks = predictions["instances"].pred_masks[obstacle_predictions & high_confidence]
 
         roof_polygons = masks_to_polygons(filtered_roof_masks)
-        obstacle_polygons = masks_to_polygons(filtered_obstacle_masks)
+        obstacle_rectangles = masks_to_rectangles(filtered_obstacle_masks)
 
         closest_roof_polygon = find_closest_polygon(roof_polygons, image_center)
         roof_polygons = [closest_roof_polygon] if closest_roof_polygon else []
 
         obstacles_on_roof = []
         if closest_roof_polygon:
-            for obstacle in obstacle_polygons:
+            for obstacle in obstacle_rectangles:
                 if is_polygon_inside_polygon(obstacle, closest_roof_polygon):  
                     obstacles_on_roof.append(obstacle)
         
